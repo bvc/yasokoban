@@ -1,0 +1,15 @@
+# Windows Ignores
+Thumbs.db
+Desktop.ini
+
+# Mac OSX Ignores
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# IntelliJ Ignores
+*.iml
+*.ipr
+*.iws
+.idea/
