@@ -13,6 +13,10 @@ public class Yasokoban extends StateBasedGame
     {
         super("Yasokoban");
 
+        this.addState(new MainMenuState(MAINMENUSTATE));
+        this.addState(new GameplayState(GAMEPLAYSTATE));
+
+        this.enterState(MAINMENUSTATE);
     }
 
     @Override

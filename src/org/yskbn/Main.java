@@ -14,6 +14,9 @@ import java.lang.reflect.Field;
 
 public class Main
 {
+    public static final int SCREEN_HEIGHT = 500;
+    public static final int SCREEN_WIDTH = 800;
+    
     private static void setupLibraryPath() throws SecurityException, NoSuchFieldException, IllegalAccessException
     {
         OperatingSystem os = OperatingSystem.getOperatingSystem();
@@ -52,6 +55,7 @@ public class Main
             setupLibraryPath();
 
             AppGameContainer container = new AppGameContainer(new WrapperGame());
+            container.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
             container.start();
         }
         catch (Throwable ex)
