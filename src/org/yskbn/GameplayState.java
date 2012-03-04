@@ -32,10 +32,10 @@ public class GameplayState extends BasicGameState
         String level =
             "**********" +
             "*P B    G*" +
-            "*  *******" +
-            "*  B    G*" +
-            "*  *******" +
-            "*  B    G*" +
+            "******* **" +
+            "*G    B **" +
+            "** *******" +
+            "** B    G*" +
             "****** ***" +
             "****** ***" +
             "*G   B   *" +
@@ -61,25 +61,21 @@ public class GameplayState extends BasicGameState
         if (container.getInput().isKeyPressed(Input.KEY_LEFT))
         {
             map.movePlayer(Direction.LEFT);
-            map.displayState();
         }
         
         if (container.getInput().isKeyPressed(Input.KEY_UP))
         {
             map.movePlayer(Direction.UP);
-            map.displayState();
         }
 
         if (container.getInput().isKeyPressed(Input.KEY_RIGHT))
         {
             map.movePlayer(Direction.RIGHT);
-            map.displayState();
         }
 
         if (container.getInput().isKeyPressed(Input.KEY_DOWN))
         {
             map.movePlayer(Direction.DOWN);
-            map.displayState();
         }
     }
 }

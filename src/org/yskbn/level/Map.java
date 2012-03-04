@@ -60,6 +60,7 @@ public class Map
         }
     }
 
+    // Call this method in the Gameplay state to display the current state
     public void displayState()
     {
         for (int y = 0; y < yLength; y++)
