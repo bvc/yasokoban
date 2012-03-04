@@ -7,10 +7,26 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.Log;
 
 public class GameplayState extends BasicGameState
 {
     private int stateID = -1;
+
+    private String map =
+            "**********" +
+            "*S B    G*" +
+            "*  *******" +
+            "*  B    G*" +
+            "*  *******" +
+            "*  B    G*" +
+            "****** ***" +
+            "****** ***" +
+            "*G   B   *" +
+            "**********";
+    private int yLength = 10;
+    private int xLength = 10;
+
 
     private SpriteSheet sheet;
 
@@ -29,21 +45,38 @@ public class GameplayState extends BasicGameState
     public void init(GameContainer container, StateBasedGame game) throws SlickException
     {
         sheet = new SpriteSheet("res/yasokoban_sprite.png", 32, 32);
-        // Make sprite position with 32 x 32 cells
-
-
-
 
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics graphics) throws SlickException
     {
-        sheet.getSprite(0,0).draw();
-        // draw sprite image from cell 0, 0
-
-        sheet.getSprite(1,0).draw(32, 0);
-        // draw sprite image from cell 1, 0
+        for (int y = 0; y < yLength; y++)
+        {
+            for (int x = 0; x < xLength; x++)
+            {
+                if (map.charAt((y * xLength) + x) == '*')
+                {
+                    sheet.getSprite(0,0).draw(x * 32, y * 32);
+                }
+                else if (map.charAt((y * xLength) + x) == 'B')
+                {
+                    sheet.getSprite(1,0).draw(x * 32, y * 32);
+                }
+                else if (map.charAt((y * xLength) + x) == 'G')
+                {
+                    sheet.getSprite(2,0).draw(x * 32, y * 32);
+                }
+                else if (map.charAt((y * xLength) + x) == 'S')
+                {
+                    sheet.getSprite(3,0).draw(x * 32, y * 32);
+                }
+                else
+                {
+                    sheet.getSprite(0,1).draw(x * 32, y * 32);
+                }
+            }
+        }
     }
 
     @Override
@@ -51,22 +84,22 @@ public class GameplayState extends BasicGameState
     {
         if (container.getInput().isKeyPressed(Input.KEY_LEFT))
         {
-            System.out.println("LEFT");
+            Log.debug("LEFT");
         }
         
         if (container.getInput().isKeyPressed(Input.KEY_UP))
         {
-            System.out.println("UP");
+            Log.debug("UP");
         }
 
         if (container.getInput().isKeyPressed(Input.KEY_RIGHT))
         {
-            System.out.println("RIGHT");
+            Log.debug("RIGHT");
         }
 
         if (container.getInput().isKeyPressed(Input.KEY_DOWN))
         {
-            System.out.println("DOWN");
+            Log.debug("DOWN");
         }
     }
 }
