@@ -21,7 +21,7 @@ public class Map
     {
         this.xLength = xDim;
         this.yLength = yDim;
-        this.thingMap = new Thing[yDim][xDim];
+        this.thingMap = new Thing[yLength][xLength];
 
         blocks = new ArrayList<Block>();
 
@@ -166,19 +166,42 @@ public class Map
 
     private boolean canPassThroughDirection(Thing thing, Direction direction)
     {
+        if (outOfBounds(thing, direction))
+        {
+            return false;
+        }
+
         Thing something = thingMap[thing.getY() + direction.y][thing.getX() + direction.x];
         return something.canPassThrough;
     }
 
     private boolean canPushInDirection(Direction direction)
     {
+        if (outOfBounds(player, direction))
+        {
+            return false;
+        }
+
         Thing something = thingMap[player.getY() + direction.y][player.getX() + direction.x];
         return something.canPush;
     }
 
     private boolean canPushIntoGoal(Thing thing, Direction direction)
     {
+        if (outOfBounds(thing, direction))
+        {
+            return false;
+        }
+
         Thing something = thingMap[thing.getY() + direction.y][thing.getX() + direction.x];
         return something.isGoal;
+    }
+
+    private boolean outOfBounds(Thing thing, Direction direction)
+    {
+        return (thing.getY() + direction.y >= yLength ||
+                thing.getY() + direction.y < 0 ||
+                thing.getX() + direction.x >= xLength ||
+                thing.getX() + direction.x < 0);
     }
 }

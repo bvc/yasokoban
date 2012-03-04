@@ -31,14 +31,14 @@ public class GameplayState extends BasicGameState
     {
         String level =
             "**********" +
-            "*P B    G*" +
-            "******* **" +
-            "*G    B **" +
-            "** *******" +
-            "** B    G*" +
-            "****** ***" +
-            "****** ***" +
-            "*G   B   *" +
+            "*P       *" +
+            "*  B  B  *" +
+            "*        *" +
+            "*        *" +
+            "*    G   *" +
+            "*    G   *" +
+            "*        *" +
+            "*        *" +
             "**********";
         this.map = new Map(level, 10, 10);
 
