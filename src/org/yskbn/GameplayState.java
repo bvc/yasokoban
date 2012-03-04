@@ -47,8 +47,12 @@ public class GameplayState extends BasicGameState
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics graphics) throws SlickException
     {
-
         map.render(graphics);
+
+        if (map.isAllBlocksInGoal())
+        {
+            graphics.drawString("YOU WIN!", Main.SCREEN_WIDTH / 2, Main.SCREEN_HEIGHT/ 2);
+        }
     }
 
     @Override

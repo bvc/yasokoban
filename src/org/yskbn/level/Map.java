@@ -14,7 +14,7 @@ public class Map
     private int xLength;
     private int yLength;
 
-    List<Thing> blocks;
+    List<Block> blocks;
     Player player;
 
     public Map(String level, int xDim, int yDim) throws SlickException
@@ -23,7 +23,7 @@ public class Map
         this.yLength = yDim;
         this.thingMap = new Thing[yDim][xDim];
 
-        blocks = new ArrayList<Thing>();
+        blocks = new ArrayList<Block>();
 
         for (int y = 0; y < yLength; y++)
         {
@@ -128,6 +128,8 @@ public class Map
             player.setX(player.getX() + direction.x);
             player.setY(player.getY() + direction.y);
             thingMap[player.getY()][player.getX()] = player;
+
+            ((Block) pushable).setInGoal(true);
         }
 
         if (canPassThroughDirection(pushable, direction))
@@ -146,6 +148,19 @@ public class Map
             player.setY(player.getY() + direction.y);
             thingMap[player.getY()][player.getX()] = player;
         }
+    }
+
+    public boolean isAllBlocksInGoal()
+    {
+        for (Block block : blocks)
+        {
+            if (block.isInGoal() == false)
+            {
+                return false;
+            }
+        }
+        
+        return true;
     }
 
     private boolean canPassThroughDirection(Thing thing, Direction direction)
