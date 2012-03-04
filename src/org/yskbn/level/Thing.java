@@ -16,6 +16,7 @@ public abstract class Thing
 
     protected boolean canPassThrough;
     protected boolean canPush;
+    protected boolean isGoal;
 
     protected SpriteSheet sheet;
 
@@ -25,6 +26,7 @@ public abstract class Thing
         this.y = yPos;
         this.canPassThrough = false;
         this.canPush = false;
+        this.isGoal = false;
 
         this.spriteX = 32;
         this.spriteY = 32;
@@ -51,28 +53,6 @@ public abstract class Thing
         this.x = x;
     }
 
-    public boolean isCanPassThrough()
-    {
-        return canPassThrough;
-    }
-
-    public void setCanPassThrough(boolean canPassThrough)
-    {
-        this.canPassThrough = canPassThrough;
-    }
-
-    public boolean isCanPush()
-    {
-        return canPush;
-    }
-
-    public void setCanPush(boolean canPush)
-    {
-        this.canPush = canPush;
-    }
-
-    public abstract void render(Graphics graphics, int x, int y);
-
     public char getSymbol()
     {
         return symbol;
@@ -82,4 +62,7 @@ public abstract class Thing
     {
         this.symbol = symbol;
     }
+
+    public abstract void render(Graphics graphics, int x, int y);
+
 }

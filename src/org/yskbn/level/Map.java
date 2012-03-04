@@ -87,7 +87,7 @@ public class Map
         }
     }
 
-    public void movePlayer(Direction direction)
+    public void movePlayer(Direction direction) throws SlickException
     {
         if (canPushInDirection(direction))
         {
@@ -113,28 +113,39 @@ public class Map
         thingMap[player.getY()][player.getX()] = player;
     }
 
-    private void pushInDirection(Direction direction)
+    private void pushInDirection(Direction direction) throws SlickException
     {
         Thing pushable = thingMap[player.getY() + direction.y][player.getX() + direction.x];
 
-        if (!canPassThroughDirection(pushable, direction))
+        if (canPushIntoGoal(pushable, direction))
         {
-            return;
+            pushable.setX(pushable.getX() + direction.x);
+            pushable.setY(pushable.getY() + direction.y);
+            thingMap[pushable.getY()][pushable.getX()] = pushable;
+
+            thingMap[player.getY()][player.getX()] = new Floor(player.getX(), player.getY());
+
+            player.setX(player.getX() + direction.x);
+            player.setY(player.getY() + direction.y);
+            thingMap[player.getY()][player.getX()] = player;
         }
 
-        Thing availableSpace = thingMap[pushable.getY() + direction.y][pushable.getX() + direction.x];
+        if (canPassThroughDirection(pushable, direction))
+        {
+            Thing availableSpace = thingMap[pushable.getY() + direction.y][pushable.getX() + direction.x];
 
-        pushable.setX(availableSpace.getX());
-        pushable.setY(availableSpace.getY());
-        thingMap[pushable.getY()][pushable.getX()] = pushable;
+            pushable.setX(availableSpace.getX());
+            pushable.setY(availableSpace.getY());
+            thingMap[pushable.getY()][pushable.getX()] = pushable;
 
-        availableSpace.setX(player.getX());
-        availableSpace.setY(player.getY());
-        thingMap[availableSpace.getY()][availableSpace.getX()] = availableSpace;
+            availableSpace.setX(player.getX());
+            availableSpace.setY(player.getY());
+            thingMap[availableSpace.getY()][availableSpace.getX()] = availableSpace;
 
-        player.setX(player.getX() + direction.x);
-        player.setY(player.getY() + direction.y);
-        thingMap[player.getY()][player.getX()] = player;
+            player.setX(player.getX() + direction.x);
+            player.setY(player.getY() + direction.y);
+            thingMap[player.getY()][player.getX()] = player;
+        }
     }
 
     private boolean canPassThroughDirection(Thing thing, Direction direction)
@@ -147,5 +158,11 @@ public class Map
     {
         Thing something = thingMap[player.getY() + direction.y][player.getX() + direction.x];
         return something.canPush;
+    }
+
+    private boolean canPushIntoGoal(Thing thing, Direction direction)
+    {
+        Thing something = thingMap[thing.getY() + direction.y][thing.getX() + direction.x];
+        return something.isGoal;
     }
 }

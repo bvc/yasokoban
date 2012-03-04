@@ -13,6 +13,7 @@ public class Goal extends Thing
 
         canPassThrough = true;
         canPush = false;
+        isGoal = true;
     }
 
     @Override
