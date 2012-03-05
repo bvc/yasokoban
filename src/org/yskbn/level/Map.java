@@ -138,18 +138,6 @@ public class Map
 
             Tile targetTile = tileMap[pushable.getY()][pushable.getX()];
             targetTile.setEntity(pushable);
-
-            if (targetTile instanceof Goal && targetTile.hasEntity())
-            {
-                if (targetTile.getEntity() instanceof Ball)
-                {
-                    ((Goal) targetTile).setHasBall(true);
-                }
-                else
-                {
-                    ((Goal) targetTile).setHasBall(false);
-                }
-            }
         }
     }
 
@@ -157,7 +145,7 @@ public class Map
     {
         for (Goal goal: goals)
         {
-            if (goal.isHasBall() == false)
+            if (goal.hasBall() == false)
             {
                 return false;
             }
@@ -187,17 +175,6 @@ public class Map
         Tile tile = tileMap[player.getY() + direction.y][player.getX() + direction.x];
         return tile.isPassable() && tile.hasEntity();
     }
-//
-//    private boolean canPushIntoGoal(Tile tile, Direction direction)
-//    {
-//        if (outOfBounds(entity, direction))
-//        {
-//            return false;
-//        }
-//
-//        Tile tile = tileMap[entity.getY() + direction.y][entity.getX() + direction.x];
-//        return tile instanceof Goal;
-//    }
 
     private boolean outOfBounds(Entity entity, Direction direction)
     {

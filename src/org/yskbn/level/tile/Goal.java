@@ -2,6 +2,8 @@ package org.yskbn.level.tile;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.yskbn.level.entity.Ball;
+import org.yskbn.level.entity.Entity;
 
 public class Goal extends Tile
 {
@@ -16,14 +18,24 @@ public class Goal extends Tile
         this.symbol = 'G';
     }
 
-    public boolean isHasBall()
+    public boolean hasBall()
     {
         return hasBall;
     }
-
-    public void setHasBall(boolean hasBall)
+    
+    @Override
+    public void setEntity(Entity entity)
     {
-        this.hasBall = hasBall;
+        if (entity != null && entity instanceof Ball)
+        {
+            this.hasBall = true;
+        }
+        else
+        {
+            this.hasBall = false;
+        }
+
+        this.entity = entity;
     }
 
     @Override
