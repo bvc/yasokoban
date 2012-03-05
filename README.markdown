@@ -14,6 +14,8 @@ This is a small project I whipped up over the weekend to try out Slick 2D.  Feel
 ## TODOs
 
 * Create the build script
+* Add step counter
+* Add rewind feature to backtrack steps
 * Add more levels (at least 100)
 * Add help menu option
 
