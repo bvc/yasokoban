@@ -6,6 +6,8 @@ Yet Another Sokoban clone
 
 This is a small project I whipped up over the weekend to try out Slick 2D.  Feel free to take a look at the source and make suggestions.
 
+### Controls
+
 * Arrow keys - to move
 * R - to restart the level
 
@@ -17,5 +19,5 @@ This is a small project I whipped up over the weekend to try out Slick 2D.  Feel
 
 ## Thanks
 
-Thanks to Darkhogg for provided this useful [Slick 2D gist](https://gist.github.com/1467056/aadc59f45a57cc86d9686c88facc8ef8de06ab86)
+Thanks to [Darkhogg](https://github.com/Darkhogg) for providing this useful [Slick 2D gist](https://gist.github.com/1467056/aadc59f45a57cc86d9686c88facc8ef8de06ab86)
 
