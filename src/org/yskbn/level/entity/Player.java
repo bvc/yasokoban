@@ -1,18 +1,15 @@
-package org.yskbn.level;
+package org.yskbn.level.entity;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-public class Floor extends Thing
+public class Player extends Entity
 {
-    public Floor(int xPos, int yPos) throws SlickException
+    public Player(int x, int y) throws SlickException
     {
-        super(xPos, yPos);
+        super(x, y);
 
-        setSymbol(' ');
-
-        canPassThrough = true;
-        canPush = false;
+        this.symbol = 'P';
     }
 
     @Override

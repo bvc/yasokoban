@@ -49,10 +49,10 @@ public class GameplayState extends BasicGameState
     {
         map.render(graphics);
 
-        if (map.isAllBlocksInGoal())
-        {
-            graphics.drawString("YOU WIN!", Main.SCREEN_WIDTH / 2, Main.SCREEN_HEIGHT/ 2);
-        }
+//        if (map.isAllBlocksInGoal())
+//        {
+//            graphics.drawString("YOU WIN!", Main.SCREEN_WIDTH / 2, Main.SCREEN_HEIGHT/ 2);
+//        }
     }
 
     @Override
@@ -61,21 +61,26 @@ public class GameplayState extends BasicGameState
         if (container.getInput().isKeyPressed(Input.KEY_LEFT))
         {
             map.movePlayer(Direction.LEFT);
+            map.displayState();
         }
         
         if (container.getInput().isKeyPressed(Input.KEY_UP))
         {
             map.movePlayer(Direction.UP);
+            map.displayState();
         }
 
         if (container.getInput().isKeyPressed(Input.KEY_RIGHT))
         {
             map.movePlayer(Direction.RIGHT);
+            map.displayState();
         }
 
         if (container.getInput().isKeyPressed(Input.KEY_DOWN))
         {
             map.movePlayer(Direction.DOWN);
+            map.displayState();
+
         }
     }
 }

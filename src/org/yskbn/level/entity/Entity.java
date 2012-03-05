@@ -1,33 +1,27 @@
-package org.yskbn.level;
+package org.yskbn.level.entity;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.yskbn.level.Renderable;
 
-public abstract class Thing
+public abstract class Entity implements Renderable
 {
     private int x;
     private int y;
 
-    private char symbol;
+    protected char symbol;
 
     protected int spriteX;
     protected int spriteY;
 
-    protected boolean canPassThrough;
-    protected boolean canPush;
-    protected boolean isGoal;
-
     protected SpriteSheet sheet;
 
-    public Thing(int x, int yPos) throws SlickException
+    public Entity(int x, int y) throws SlickException
     {
         this.x = x;
-        this.y = yPos;
-        this.canPassThrough = false;
-        this.canPush = false;
-        this.isGoal = false;
-
+        this.y = y;
+        
         this.spriteX = 32;
         this.spriteY = 32;
         this.sheet = new SpriteSheet("res/yasokoban_sprite.png", spriteX, spriteY);
@@ -53,16 +47,10 @@ public abstract class Thing
         this.x = x;
     }
 
+    public abstract void render(Graphics graphics, int x, int y);
+
     public char getSymbol()
     {
         return symbol;
     }
-
-    public void setSymbol(char symbol)
-    {
-        this.symbol = symbol;
-    }
-
-    public abstract void render(Graphics graphics, int x, int y);
-
 }
