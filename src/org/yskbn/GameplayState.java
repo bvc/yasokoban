@@ -87,6 +87,11 @@ public class GameplayState extends BasicGameState
             map.movePlayer(Direction.DOWN);
         }
 
+        if (container.getInput().isKeyPressed(Input.KEY_R))
+        {
+            map.reset();
+        }
+
         if (map.isAllBlocksInGoal())
         {
             this.currentLevel++;

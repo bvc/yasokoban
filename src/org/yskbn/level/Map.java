@@ -20,6 +20,8 @@ public class Map
     private int xLength;
     private int yLength;
 
+    private String originalState;
+
     List<Goal> goals;
     Player player;
 
@@ -27,6 +29,14 @@ public class Map
     {
         this.xLength = xDim;
         this.yLength = yDim;
+
+        originalState = level;
+
+        generateTileMap(originalState);
+    }
+
+    private void generateTileMap(String level) throws SlickException
+    {
         this.tileMap = new Tile[yLength][xLength];
 
         goals = new ArrayList<Goal>();
@@ -182,5 +192,10 @@ public class Map
                 entity.getY() + direction.y < 0 ||
                 entity.getX() + direction.x >= xLength ||
                 entity.getX() + direction.x < 0);
+    }
+
+    public void reset() throws SlickException
+    {
+        generateTileMap(originalState);
     }
 }
