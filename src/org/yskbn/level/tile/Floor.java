@@ -21,7 +21,6 @@ public class Floor extends Tile
         if (hasEntity())
         {
             entity.render(graphics, x, y);
-            this.symbol = entity.getSymbol();
         }
     }
 }

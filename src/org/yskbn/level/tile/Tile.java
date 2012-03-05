@@ -78,10 +78,15 @@ public abstract class Tile implements Renderable
         this.x = x;
     }
 
-    public abstract void render(Graphics graphics, int x, int y);
-
     public char getSymbol()
     {
+        if (hasEntity())
+        {
+            return entity.getSymbol();
+        }
+
         return symbol;
     }
+
+    public abstract void render(Graphics graphics, int x, int y);
 }

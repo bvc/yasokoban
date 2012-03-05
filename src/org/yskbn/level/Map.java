@@ -80,7 +80,8 @@ public class Map
         {
             for (int x = 0; x < xLength; x++)
             {
-                System.out.print(tileMap[y][x].getSymbol());
+                Tile tile = tileMap[y][x];
+                System.out.print(tile.getSymbol());
             }
             
             System.out.print("\n");
