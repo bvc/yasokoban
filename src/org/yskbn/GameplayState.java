@@ -49,10 +49,10 @@ public class GameplayState extends BasicGameState
     {
         map.render(graphics);
 
-//        if (map.isAllBlocksInGoal())
-//        {
-//            graphics.drawString("YOU WIN!", Main.SCREEN_WIDTH / 2, Main.SCREEN_HEIGHT/ 2);
-//        }
+        if (map.isAllBlocksInGoal())
+        {
+            graphics.drawString("YOU WIN!", Main.SCREEN_WIDTH / 2, Main.SCREEN_HEIGHT/ 2);
+        }
     }
 
     @Override

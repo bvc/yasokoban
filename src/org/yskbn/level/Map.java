@@ -20,7 +20,6 @@ public class Map
     private int xLength;
     private int yLength;
 
-    List<Ball> balls;
     List<Goal> goals;
     Player player;
 
@@ -30,7 +29,6 @@ public class Map
         this.yLength = yDim;
         this.tileMap = new Tile[yLength][xLength];
 
-        balls = new ArrayList<Ball>();
         goals = new ArrayList<Goal>();
 
         for (int y = 0; y < yLength; y++)
@@ -47,7 +45,6 @@ public class Map
                     Floor floor = new Floor(x, y);
                     Ball ball = new Ball(x, y);
                     floor.setEntity(ball);
-                    balls.add(ball);
                     tileMap[y][x] = floor;
                 }
                 else if (level.charAt((y * xLength) + x) == 'G')
@@ -104,11 +101,11 @@ public class Map
 
     public void movePlayer(Direction direction) throws SlickException
     {
-//        if (canPushInDirection(direction))
-//        {
-//            pushInDirection(direction);
-//        }
-//
+        if (canPushInDirection(direction))
+        {
+            pushInDirection(direction);
+        }
+
         if (canPassThroughDirection(player, direction))
         {
             repositionPlayer(player, direction);
@@ -122,68 +119,53 @@ public class Map
         entity.setX(entity.getX() + direction.x);
         entity.setY(entity.getY() + direction.y);
         tileMap[entity.getY()][entity.getX()].setEntity(entity);
-
-
-
-//        something.setX(entity.getX());
-//        something.setY(entity.getY());
-//        tileMap[something.getY()][something.getX()] = something;
-//
-//        player.setX(player.getX() + direction.x);
-//        player.setY(player.getY() + direction.y);
-//        tileMap[player.getY()][player.getX()] = player;
     }
-//
-//    private void pushInDirection(Direction direction) throws SlickException
-//    {
-//        Thing pushable = tileMap[player.getY() + direction.y][player.getX() + direction.x];
-//
-//        if (canPushIntoGoal(pushable, direction))
-//        {
-//            pushable.setX(pushable.getX() + direction.x);
-//            pushable.setY(pushable.getY() + direction.y);
-//            tileMap[pushable.getY()][pushable.getX()] = pushable;
-//
-//            tileMap[player.getY()][player.getX()] = new Floor(player.getX(), player.getY());
-//
-//            player.setX(player.getX() + direction.x);
-//            player.setY(player.getY() + direction.y);
-//            tileMap[player.getY()][player.getX()] = player;
-//
-//            ((Block) pushable).setInGoal(true);
-//        }
-//
-//        if (canPassThroughDirection(pushable, direction))
-//        {
-//            Thing availableSpace = tileMap[pushable.getY() + direction.y][pushable.getX() + direction.x];
-//
-//            pushable.setX(availableSpace.getX());
-//            pushable.setY(availableSpace.getY());
-//            tileMap[pushable.getY()][pushable.getX()] = pushable;
-//
-//            availableSpace.setX(player.getX());
-//            availableSpace.setY(player.getY());
-//            tileMap[availableSpace.getY()][availableSpace.getX()] = availableSpace;
-//
-//            player.setX(player.getX() + direction.x);
-//            player.setY(player.getY() + direction.y);
-//            tileMap[player.getY()][player.getX()] = player;
-//        }
-//    }
-//
-//    public boolean isAllBlocksInGoal()
-//    {
-//        for (Block block : balls)
-//        {
-//            if (block.isInGoal() == false)
-//            {
-//                return false;
-//            }
-//        }
-//
-//        return true;
-//    }
-//
+
+    private void pushInDirection(Direction direction) throws SlickException
+    {
+        Entity pushable = tileMap[player.getY() + direction.y][player.getX() + direction.x].getEntity();
+
+        if (canPassThroughDirection(pushable, direction))
+        {
+            tileMap[player.getY()][player.getX()].setEntity(null);
+
+            player.setX(player.getX() + direction.x);
+            player.setY(player.getY() + direction.y);
+            tileMap[player.getY()][player.getX()].setEntity(player);
+
+            pushable.setX(pushable.getX() + direction.x);
+            pushable.setY(pushable.getY() + direction.y);
+
+            Tile targetTile = tileMap[pushable.getY()][pushable.getX()];
+            targetTile.setEntity(pushable);
+
+            if (targetTile instanceof Goal && targetTile.hasEntity())
+            {
+                if (targetTile.getEntity() instanceof Ball)
+                {
+                    ((Goal) targetTile).setHasBall(true);
+                }
+                else
+                {
+                    ((Goal) targetTile).setHasBall(false);
+                }
+            }
+        }
+    }
+
+    public boolean isAllBlocksInGoal()
+    {
+        for (Goal goal: goals)
+        {
+            if (goal.isHasBall() == false)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private boolean canPassThroughDirection(Entity entity, Direction direction)
     {
         if (outOfBounds(entity, direction))
@@ -194,29 +176,29 @@ public class Map
         Tile tile = tileMap[entity.getY() + direction.y][entity.getX() + direction.x];
         return tile.isPassable() && !tile.hasEntity();
     }
+
+    private boolean canPushInDirection(Direction direction)
+    {
+        if (outOfBounds(player, direction))
+        {
+            return false;
+        }
+
+        Tile tile = tileMap[player.getY() + direction.y][player.getX() + direction.x];
+        return tile.isPassable() && tile.hasEntity();
+    }
 //
-//    private boolean canPushInDirection(Direction direction)
+//    private boolean canPushIntoGoal(Tile tile, Direction direction)
 //    {
-//        if (outOfBounds(player, direction))
+//        if (outOfBounds(entity, direction))
 //        {
 //            return false;
 //        }
 //
-//        Thing something = tileMap[player.getY() + direction.y][player.getX() + direction.x];
-//        return something.canPush;
+//        Tile tile = tileMap[entity.getY() + direction.y][entity.getX() + direction.x];
+//        return tile instanceof Goal;
 //    }
-//
-//    private boolean canPushIntoGoal(Thing thing, Direction direction)
-//    {
-//        if (outOfBounds(thing, direction))
-//        {
-//            return false;
-//        }
-//
-//        Thing something = tileMap[thing.getY() + direction.y][thing.getX() + direction.x];
-//        return something instanceof Goal;
-//    }
-//
+
     private boolean outOfBounds(Entity entity, Direction direction)
     {
         return (entity.getY() + direction.y >= yLength ||
