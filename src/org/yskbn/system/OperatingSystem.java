@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 /**
  * Enum used to identify Operating System family
+ * Slick 2D Scaffolding code provide by Darkhogg
  */
 public enum OperatingSystem
 {

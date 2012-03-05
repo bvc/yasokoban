@@ -12,6 +12,10 @@ import org.yskbn.system.OperatingSystem;
 
 import java.lang.reflect.Field;
 
+/**
+ * Main class that begins program execution
+ * Slick 2D scaffolding code provided by Darkhogg
+ */
 public class Main
 {
     public static final int SCREEN_HEIGHT = 500;
