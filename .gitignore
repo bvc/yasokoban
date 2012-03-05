@@ -13,3 +13,6 @@ Desktop.ini
 *.ipr
 *.iws
 .idea/
+
+# Project Ignores
+out/
