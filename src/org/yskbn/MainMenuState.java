@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MainMenuState extends BasicGameState
 {
+    Image yasokobanTitle = null;
     Image startGameOption = null;
     Image exitGameOption = null;
 
@@ -29,6 +30,7 @@ public class MainMenuState extends BasicGameState
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException
     {
+        yasokobanTitle = new Image("res/yasokoban_title.png");
         startGameOption = new Image("res/start_option.png");
         exitGameOption = new Image("res/exit_option.png");
     }
@@ -36,6 +38,7 @@ public class MainMenuState extends BasicGameState
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics graphics) throws SlickException
     {
+        yasokobanTitle.draw(400 - (yasokobanTitle.getWidth() / 2), 100);
         startGameOption.draw(400 - (startGameOption.getWidth() / 2), 250);
         exitGameOption.draw(400 - (exitGameOption.getWidth() / 2), 300);
     }
