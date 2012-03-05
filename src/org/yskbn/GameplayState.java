@@ -7,17 +7,33 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.yskbn.level.Direction;
+import org.yskbn.level.Level;
 import org.yskbn.level.Map;
+
+import java.util.ArrayList;
 
 public class GameplayState extends BasicGameState
 {
     private int stateID = -1;
 
     private Map map;
+    private ArrayList<Level> levels;
+    private int currentLevel;
+
+    private boolean finishedGame;
 
     public GameplayState(int stateID)
     {
         this.stateID = stateID;
+        this.currentLevel = 0;
+        this.finishedGame = false;
+    }
+
+    public GameplayState(int stateID, int currentLevel)
+    {
+        this.stateID = stateID;
+        this.currentLevel = currentLevel;
+        this.finishedGame = false;
     }
 
     @Override
@@ -29,27 +45,20 @@ public class GameplayState extends BasicGameState
     @Override
     public void init(GameContainer container, StateBasedGame game) throws SlickException
     {
-        String level =
-            "**********" +
-            "*P       *" +
-            "*  B  B  *" +
-            "*        *" +
-            "*        *" +
-            "*    G   *" +
-            "*    G   *" +
-            "*        *" +
-            "*        *" +
-            "**********";
-        this.map = new Map(level, 10, 10);
+        this.levels = Level.generateLevels();
 
+        Level level = levels.get(currentLevel);
+        this.map = new Map(level.getMap(), level.getWidth(), level.getHeight());
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics graphics) throws SlickException
     {
-        map.render(graphics);
-
-        if (map.isAllBlocksInGoal())
+        if (!finishedGame)
+        {
+            map.render(graphics);
+        }
+        else
         {
             graphics.drawString("YOU WIN!", Main.SCREEN_WIDTH / 2, Main.SCREEN_HEIGHT/ 2);
         }
@@ -61,26 +70,36 @@ public class GameplayState extends BasicGameState
         if (container.getInput().isKeyPressed(Input.KEY_LEFT))
         {
             map.movePlayer(Direction.LEFT);
-            map.displayState();
         }
         
         if (container.getInput().isKeyPressed(Input.KEY_UP))
         {
             map.movePlayer(Direction.UP);
-            map.displayState();
         }
 
         if (container.getInput().isKeyPressed(Input.KEY_RIGHT))
         {
             map.movePlayer(Direction.RIGHT);
-            map.displayState();
         }
 
         if (container.getInput().isKeyPressed(Input.KEY_DOWN))
         {
             map.movePlayer(Direction.DOWN);
-            map.displayState();
+        }
 
+        if (map.isAllBlocksInGoal())
+        {
+            this.currentLevel++;
+
+            if (currentLevel >= levels.size())
+            {
+                finishedGame = true;
+            }
+            else
+            {
+                Level level = levels.get(currentLevel);
+                this.map = new Map(level.getMap(), level.getWidth(), level.getHeight());
+            }
         }
     }
 }
