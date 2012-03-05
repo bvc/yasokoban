@@ -6,8 +6,8 @@ Yet Another Sokoban clone
 
 This is a small project I whipped up over the weekend to try out Slick 2D.  Feel free to take a look at the source and make suggestions.
 
-Arrow keys - to move
-R - to restart the level
+* Arrow keys - to move
+* R - to restart the level
 
 ## TODOs
 
