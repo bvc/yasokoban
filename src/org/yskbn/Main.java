@@ -20,7 +20,13 @@ public class Main
 {
     public static final int SCREEN_HEIGHT = 500;
     public static final int SCREEN_WIDTH = 800;
-    
+
+    /**
+     * Sets up the proper library path to run the application on
+     * @throws SecurityException
+     * @throws NoSuchFieldException
+     * @throws IllegalAccessException
+     */
     private static void setupLibraryPath() throws SecurityException, NoSuchFieldException, IllegalAccessException
     {
         OperatingSystem os = OperatingSystem.getOperatingSystem();
@@ -52,6 +58,10 @@ public class Main
         }
     }
 
+    /**
+     * The application entry point
+     * @param args Program arguments that were passed in
+     */
     public static void main(String[] args)
     {
         try
@@ -68,13 +78,20 @@ public class Main
         }
     }
 
+    /**
+     * Displays error message in a prompt
+     * @param ex Exception that was thrown from the game
+     */
     static void displayFatalError(Throwable ex)
     {
         Log.error(ex);
         Sys.alert("Fatal Error", "Fatal error occurred during game execution: " + ex.toString());
         System.exit(1);
     }
-    
+
+    /**
+     * Game wrapper which initializes and sets up the Game
+     */
     public static final class WrapperGame implements Game
     {
         static
