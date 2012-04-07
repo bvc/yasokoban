@@ -5,24 +5,11 @@ import org.newdawn.slick.SlickException;
 
 public class Ball extends Entity
 {
-    private boolean pushable;
-
     public Ball(int x, int y) throws SlickException
     {
         super(x, y);
 
-        pushable = true;
         this.symbol = '$';
-    }
-
-    public boolean isPushable()
-    {
-        return pushable;
-    }
-
-    public void setPushable(boolean pushable)
-    {
-        this.pushable = pushable;
     }
 
     @Override
