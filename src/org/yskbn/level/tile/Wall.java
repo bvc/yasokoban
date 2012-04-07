@@ -10,7 +10,7 @@ public class Wall extends Tile
         super(x, y);
         
         passable = false;
-        this.symbol = '*';
+        this.symbol = '#';
     }
 
     @Override

@@ -45,25 +45,25 @@ public class Map
         {
             for (int x = 0; x < xLength; x++)
             {
-                if (level.charAt((y * xLength) + x) == '*')
+                if (level.charAt((y * xLength) + x) == '#')
                 {
                     Wall wall = new Wall(x, y);
                     tileMap[y][x] = wall;
                 }
-                else if (level.charAt((y * xLength) + x) == 'B')
+                else if (level.charAt((y * xLength) + x) == '$')
                 {
                     Floor floor = new Floor(x, y);
                     Ball ball = new Ball(x, y);
                     floor.setEntity(ball);
                     tileMap[y][x] = floor;
                 }
-                else if (level.charAt((y * xLength) + x) == 'G')
+                else if (level.charAt((y * xLength) + x) == '.')
                 {
                     Goal goal = new Goal(x, y);
                     goals.add(goal);
                     tileMap[y][x] = goal;
                 }
-                else if (level.charAt((y * xLength) + x) == 'P')
+                else if (level.charAt((y * xLength) + x) == '@')
                 {
                     Floor floor = new Floor(x, y);
                     Player player = new Player(x, y);

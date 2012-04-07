@@ -15,7 +15,7 @@ public class Goal extends Tile
 
         passable = true;
         hasBall = false;
-        this.symbol = 'G';
+        this.symbol = '.';
     }
 
     public boolean hasBall()

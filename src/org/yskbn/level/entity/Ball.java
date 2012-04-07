@@ -12,7 +12,7 @@ public class Ball extends Entity
         super(x, y);
 
         pushable = true;
-        this.symbol = 'B';
+        this.symbol = '$';
     }
 
     public boolean isPushable()

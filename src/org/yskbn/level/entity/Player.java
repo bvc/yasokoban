@@ -9,7 +9,7 @@ public class Player extends Entity
     {
         super(x, y);
 
-        this.symbol = 'P';
+        this.symbol = '@';
     }
 
     @Override
