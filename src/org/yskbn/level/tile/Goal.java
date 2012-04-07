@@ -26,14 +26,7 @@ public class Goal extends Tile
     @Override
     public void setEntity(Entity entity)
     {
-        if (entity != null && entity instanceof Ball)
-        {
-            this.hasBall = true;
-        }
-        else
-        {
-            this.hasBall = false;
-        }
+        this.hasBall = entity != null && entity instanceof Ball;
 
         this.entity = entity;
     }
