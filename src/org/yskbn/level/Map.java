@@ -13,6 +13,9 @@ import org.yskbn.level.tile.Wall;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Initializes and manages the current level and its interactions
+ */
 public class Map
 {
     public Tile[][] tileMap;

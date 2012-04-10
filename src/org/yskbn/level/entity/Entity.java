@@ -5,6 +5,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.yskbn.level.Renderable;
 
+/**
+ * Base class for all objects that are entities
+ * Entity objects are contained within Tiles
+ */
 public abstract class Entity implements Renderable
 {
     private int x;
@@ -47,10 +51,10 @@ public abstract class Entity implements Renderable
         this.x = x;
     }
 
-    public abstract void render(Graphics graphics, int x, int y);
-
     public char getSymbol()
     {
         return symbol;
     }
+
+    public abstract void render(Graphics graphics, int x, int y);
 }

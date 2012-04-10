@@ -6,6 +6,10 @@ import org.newdawn.slick.SpriteSheet;
 import org.yskbn.level.Renderable;
 import org.yskbn.level.entity.Entity;
 
+/**
+ * Base class for all objects that represent one space in the game world
+ * Each tile can hold one entity
+ */
 public abstract class Tile implements Renderable
 {
     private int x;

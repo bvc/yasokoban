@@ -4,6 +4,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * Game object initializes game states and links them together
+ */
 public class Yasokoban extends StateBasedGame
 {
     public static final int MAINMENUSTATE = 0;
