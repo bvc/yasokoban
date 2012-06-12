@@ -19,6 +19,7 @@ This is a small project I whipped up over the weekend to try out Slick 2D.  Feel
 * Add more levels (at least 100)
 * Add level select option
 * Add help menu option
+* Add graphics
 
 ## Thanks
 
